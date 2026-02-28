@@ -124,6 +124,10 @@ button{
   cursor:pointer;
 
   transition:0.3s;
+
+
+  /* added last minute because i was like "hmm maybe the buttons could be a little better in small devices" and then i was like "hmm maybe the buttons could be a little better in general" so here we are */
+  -webkit-tap-highlight-color: transparent;
 }
 button{
   position: relative;
@@ -221,4 +225,20 @@ button:disabled{
 
 button.danger_btn {
   background: rgb(236, 57, 57);
+}
+
+
+/* Disable hover effects on touch devices */
+@media (hover: none) {
+
+  .card:hover{
+    transform: none;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.35);
+  }
+
+  button:hover{
+    transform: none;
+    box-shadow: none;
+  }
+
 }
