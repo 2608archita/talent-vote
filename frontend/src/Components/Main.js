@@ -17,7 +17,7 @@ const Main = () => {
     }, []);
 
     const fetchData = async () => {
-        const res = await axios.get("http://localhost:5000/contestants");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/contestants`);
         setContestants(res.data);
     };
 
@@ -29,7 +29,7 @@ const Main = () => {
         }
 
         try{
-        await axios.post(`http://localhost:5000/vote/${id}`);
+        await axios.post(`${process.env.REACT_APP_API_URL}/vote/${id}`);
 
         // disable instantly
         setVoted(true);

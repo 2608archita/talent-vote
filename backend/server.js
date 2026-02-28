@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -7,11 +8,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/voting-app")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("MongoDB connected"))
 .catch(err => console.log(err));
 
 const Contestant = require("./models/Contestant");
+
 
 
 // Get contestants
@@ -19,6 +21,7 @@ app.get("/contestants", async (req, res) => {
   const data = await Contestant.find();
   res.json(data);
 });
+
 
 
 // Vote API
@@ -62,4 +65,6 @@ app.delete("/delete/:id", async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+const PORT = process.env.PORT || 5000;  
+// this takes a default port of 5000 if no PORT is specified in the environment variables, which is common for local development. In production, you would typically set the PORT environment variable to the desired port number.
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

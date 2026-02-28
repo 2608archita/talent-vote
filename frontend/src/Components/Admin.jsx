@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 function Admin() {
@@ -10,13 +10,13 @@ function Admin() {
     }, []);
 
   const fetchData = async () => {
-        const res = await axios.get("http://localhost:5000/contestants");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/contestants`);
         setContestants(res.data);
     };
   
   const removeHandler = async (id)=>{
     try{
-      await axios.delete(`http://localhost:5000/delete/${id}`)
+      await axios.delete(`${process.env.REACT_APP_API_URL}/delete/${id}`)
 
       fetchData();  
 
@@ -38,7 +38,7 @@ function Admin() {
     }
 
     try {
-      await axios.post("http://localhost:5000/add", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/add`, {
         name: name,
         image: image,
       });
