@@ -5,7 +5,9 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "*"
+}));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
@@ -14,7 +16,10 @@ mongoose.connect(process.env.MONGO_URI)
 
 const Contestant = require("./models/Contestant");
 
-
+// only for testing purpose
+app.get("/", (req, res) => {
+  res.send("API running");
+});
 
 // Get contestants
 app.get("/contestants", async (req, res) => {
