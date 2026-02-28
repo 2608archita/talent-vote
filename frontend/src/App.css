@@ -199,3 +199,26 @@ button:disabled{
     text-align: center;
     gap: 0px;
 }
+
+
+
+/* loading animation */
+.loading-text {
+  font-size: 30px;
+}
+.dots::after {
+  content: '';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%   { content: ''; }
+  25%  { content: '.'; }
+  50%  { content: '..'; }
+  75%  { content: '...'; }
+  100% { content: ''; }
+}
+
+button.danger_btn {
+  background: rgb(236, 57, 57);
+}
